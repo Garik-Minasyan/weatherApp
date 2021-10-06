@@ -1,13 +1,13 @@
 import { Route, Switch } from 'react-router-dom';
-import WeatherForecast from "../routes/WeatherForecast";
 import SearchCity from "../routes/SearchCity";
+import WheatherForecastObserver from '../routes/WheatherForecast';
 
 const Content: React.FC = () => {
     return (
         <div>
             <Switch>
                 <Route exact path='/'>
-                    <WeatherForecast />
+                    <WheatherForecastObserver />
                 </Route>
                 <Route exact path='/searchcity'>
                     <SearchCity />

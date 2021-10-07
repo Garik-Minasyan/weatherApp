@@ -4,10 +4,8 @@ import { API_KEY_NAME } from '../api/api';
 class Wheather {
     city: any[] = []
     cityList: any[] = []
-    static city: any
     static getCity: any;
     static addCityList: void;
-    weather: any;
     constructor() {
         makeAutoObservable(this)
     }

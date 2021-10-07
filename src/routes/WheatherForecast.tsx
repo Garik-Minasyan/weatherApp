@@ -29,7 +29,7 @@ const WheatherForecast: React.FC = () => {
                 console.log(item)
                 return (
                     <div key={item.name}>
-                        <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`} />
+                        <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`} alt='png' />
                         <h1>
                             {item.weather[0].main}
                         </h1>

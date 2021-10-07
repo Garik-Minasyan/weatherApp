@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import Wheather from '../store/wheather';
+import wheather from '../store/wheather';
 import styled from 'styled-components';
 
 
@@ -17,23 +17,32 @@ const WheatherForecastWrap = styled.div`
 `
 
 const WheatherForecast: React.FC = () => {
-    // const [wheather,setWeather] = useState<any[]>([]);
+    // const [wheatherCity, setWeatherCity] = useState<any[]>([]);
 
     useEffect(() => {
-        Wheather.getCity();
+        wheather.enterToCityLink("yerevan");
     }, []);
 
     return (
         <WheatherForecastWrap>
-           {Wheather.city &&  Wheather.city.map(item => {
-               return (
-                   <div key={item.name}>
-                       {
-                           item.name
-                       }
-                   </div>
-               )
-           })}
+            {wheather.city && wheather.city.map(item => {
+                console.log(item)
+                return (
+                    <div key={item.name}>
+                        <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`} />
+                        <h1>
+                            {item.weather[0].main}
+                        </h1>
+                        <h1>
+                            {Math.ceil(Number(item?.main.temp))}
+                            <span>°C</span>
+                        </h1>
+                        <h3>
+                            {item?.name} {item?.sys?.country}
+                        </h3>
+                    </div>
+                )
+            })}
         </WheatherForecastWrap>
     )
 }

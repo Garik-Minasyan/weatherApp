@@ -27,63 +27,61 @@ const GreenSwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const WheatherForecast: React.FC = () => {
-    // const [wheatherCity, setWeatherCity] = useState<any[]>([]);
     const [toggle, setToggle] = useState(true);
 
     const changeToggle = () => {
         setToggle(prev => !prev)
     }
-    console.log(toggle)
 
     useEffect(() => {
-        wheather.enterToCityLink("yerevan");
+        if (!wheather.city) {
+            wheather.getCityCoordinats("yerevan");
+        }
     }, []);
+
+    if (!wheather.city) return <>loading...</>
 
     return (
         <WheatherForecastWrap>
-            {wheather.city && wheather.city.map(item => {
-                return (
-                    <div key={item.name}>
-                        <IconWrap>
-                            <h1>
-                                {item.weather[0].main}
-                            </h1>
-                            <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt='png' />
-                        </IconWrap>
-                        <TempCityWrap>
-                            {
-                                toggle ?
-                                    <h2>
-                                        {Math.ceil(Number(item?.clouds.all))}
-                                        <span>°C</span>
-                                    </h2>
-                                    :
-                                    <h2>
-                                        {convertToF(item?.clouds.all)}
-                                        <span>°F</span>
-                                    </h2>
-                            }
+            <div>
+                <IconWrap>
+                    <h1>
+                        {wheather.city.weather[0].main}
+                    </h1>
+                    <img src={`https://openweathermap.org/img/wn/${wheather.city.weather[0].icon}@2x.png`} alt='png' />
+                </IconWrap>
+                <TempCityWrap>
+                    {
+                        toggle ?
                             <h2>
-                                {item?.name} {item?.sys?.country}
+                                {Math.ceil(Number(wheather.city?.clouds.all))}
+                                <span>°C</span>
                             </h2>
-                            <ToggleWrap>
-                                <h4>°F</h4>
-                                <GreenSwitch onClick={changeToggle} defaultChecked />
-                                <h4>°C</h4>
-                            </ToggleWrap>
-                        </TempCityWrap>
-                        <CoordWrap>
-                            <h3>
-                                lat :{item?.coord.lat}
-                            </h3>
-                            <h3>
-                                lon :{item?.coord.lon}
-                            </h3>
-                            <h3>{new Date().toString().replace("GMT+0400 (Armenia Standard Time)", '')}</h3>
-                        </CoordWrap>
-                    </div>
-                )
-            })}
+                            :
+                            <h2>
+                                {convertToF(wheather.city?.clouds.all)}
+                                <span>°F</span>
+                            </h2>
+                    }
+                    <h2>
+                        {wheather.city?.name} {wheather.city?.sys?.country}
+                    </h2>
+                    <ToggleWrap>
+                        <h4>°F</h4>
+                        <GreenSwitch onClick={changeToggle} defaultChecked />
+                        <h4>°C</h4>
+                    </ToggleWrap>
+                </TempCityWrap>
+                <CoordWrap>
+                    <h3>
+                        lat :{wheather.city?.coord.lat}
+                    </h3>
+                    <h3>
+                        lon :{wheather.city?.coord.lon}
+                    </h3>
+                    <h3>{new Date().toLocaleString()}</h3>
+                </CoordWrap>
+            </div>
         </WheatherForecastWrap>
     )
 }

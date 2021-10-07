@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Wheather from '../store/wheather';
 import { Button, TextField } from "@material-ui/core";
 import FormCity from '../components/FormCity';
 import { SearchCityWrap } from './routesStyles';
+import wheather from '../store/wheather';
 
 const SearchCity: React.FC = () => {
     const [value, setValue] = useState<String>('');
@@ -11,11 +11,9 @@ const SearchCity: React.FC = () => {
         setValue(e.target.value)
     }
 
-    const addCity = () => {
-        if (value.length) {
-            Wheather.addCityList(value)
-            setValue('')
-        }
+    const addSuccess = () => {
+        wheather.getCityCoordinats(value)
+        setValue('')
     }
 
     return (
@@ -32,7 +30,7 @@ const SearchCity: React.FC = () => {
                 />
                 <div style={{ marginLeft: "5px" }}>
                     <Button
-                        onClick={addCity}
+                        onClick={addSuccess}
                         variant="contained"
                         size="large"
                         color="secondary">Success

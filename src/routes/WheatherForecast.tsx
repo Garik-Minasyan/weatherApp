@@ -1,23 +1,39 @@
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import wheather from '../store/wheather';
-import styled from 'styled-components';
+import { convertToF } from '../components/utils';
+import { alpha, styled } from '@material-ui/core/styles';
+import { pink } from '@material-ui/core/colors';
+import Switch from '@material-ui/core/Switch';
+import {
+    WheatherForecastWrap,
+    IconWrap,
+    ToggleWrap,
+    TempCityWrap,
+    CoordWrap
+}
+    from './routesStyles';
 
-
-const WheatherForecastWrap = styled.div`
-    width: 500px;
-    height: 300px;
-    border: 1px solid #d0d0d1;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-    margin-left: 38%;
-    margin-top: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+const GreenSwitch = styled(Switch)(({ theme }) => ({
+    '& .MuiSwitch-switchBase.Mui-checked': {
+        color: pink[600],
+        '&:hover': {
+            backgroundColor: alpha(pink[600], theme.palette.action.hoverOpacity),
+        },
+    },
+    '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+        backgroundColor: pink[600],
+    },
+}));
 
 const WheatherForecast: React.FC = () => {
     // const [wheatherCity, setWeatherCity] = useState<any[]>([]);
+    const [toggle, setToggle] = useState(true);
+
+    const changeToggle = () => {
+        setToggle(prev => !prev)
+    }
+    console.log(toggle)
 
     useEffect(() => {
         wheather.enterToCityLink("yerevan");
@@ -26,20 +42,45 @@ const WheatherForecast: React.FC = () => {
     return (
         <WheatherForecastWrap>
             {wheather.city && wheather.city.map(item => {
-                console.log(item)
                 return (
                     <div key={item.name}>
-                        <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`} alt='png' />
-                        <h1>
-                            {item.weather[0].main}
-                        </h1>
-                        <h1>
-                            {Math.ceil(Number(item?.main.temp))}
-                            <span>°C</span>
-                        </h1>
-                        <h3>
-                            {item?.name} {item?.sys?.country}
-                        </h3>
+                        <IconWrap>
+                            <h1>
+                                {item.weather[0].main}
+                            </h1>
+                            <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt='png' />
+                        </IconWrap>
+                        <TempCityWrap>
+                            {
+                                toggle ?
+                                    <h2>
+                                        {Math.ceil(Number(item?.clouds.all))}
+                                        <span>°C</span>
+                                    </h2>
+                                    :
+                                    <h2>
+                                        {convertToF(item?.clouds.all)}
+                                        <span>°F</span>
+                                    </h2>
+                            }
+                            <h2>
+                                {item?.name} {item?.sys?.country}
+                            </h2>
+                            <ToggleWrap>
+                                <h4>°F</h4>
+                                <GreenSwitch onClick={changeToggle} defaultChecked />
+                                <h4>°C</h4>
+                            </ToggleWrap>
+                        </TempCityWrap>
+                        <CoordWrap>
+                            <h3>
+                                lat :{item?.coord.lat}
+                            </h3>
+                            <h3>
+                                lon :{item?.coord.lon}
+                            </h3>
+                            <h3>{new Date().toString().replace("GMT+0400 (Armenia Standard Time)", '')}</h3>
+                        </CoordWrap>
                     </div>
                 )
             })}

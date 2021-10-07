@@ -20,8 +20,12 @@ class Wheather {
         fetch(url)
             .then((res) => res.json())
             .then((data) => this.city = [...this.city, data])
+        console.log(this.city)
         this.city = []
     }
 }
 
 export default new Wheather();
+// `https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=${API_KEY_NAME}`
+
+//https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=${API_KEY_NAME}

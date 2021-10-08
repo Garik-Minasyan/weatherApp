@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
+
+import { AppWrap } from './indexStyles';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AppWrap>
+      <App />
+    </AppWrap>
   </React.StrictMode>,
   document.getElementById('root')
 );

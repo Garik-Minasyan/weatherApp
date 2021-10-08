@@ -4,16 +4,39 @@ import FormCity from '../components/FormCity';
 import { SearchCityWrap } from './routesStyles';
 import wheather from '../store/wheather';
 
+import * as React from 'react';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Modal from '@material-ui/core/Modal';
+
+const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '51%',
+    transform: 'translate(-50%, -50%)',
+    width: 450,
+    bgcolor: '#B20003',
+    color: 'white',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
+
 const SearchCity: React.FC = () => {
     const [value, setValue] = useState<String>('');
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const changeValue = (e: any) => {
         setValue(e.target.value)
     }
 
     const addSuccess = () => {
-        wheather.getCityCoordinats(value)
-        setValue('')
+        if (value.length) {
+            wheather.getCityCoordinats(value)
+            setValue('')
+        } else (handleOpen())
     }
 
     return (
@@ -36,12 +59,22 @@ const SearchCity: React.FC = () => {
                         color="secondary">Success
                     </Button>
                 </div>
-
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            Please write the name of the city !!!
+                        </Typography>
+                    </Box>
+                </Modal>
             </SearchCityWrap>
             <FormCity />
         </div>
     )
-
 }
 
 export default SearchCity;

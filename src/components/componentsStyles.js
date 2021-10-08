@@ -9,6 +9,7 @@ export const LinkWrap = styled.ul`
     background-color: #fff;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
+    border-radius: 10px;
     box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.16);
     display: flex;
     justify-content: center;
@@ -26,4 +27,19 @@ export const LinkWrap = styled.ul`
         color: white
     }
     }
+`
+
+export const HourlyWrap = styled.div`
+    width: 1213px;
+    margin-left: 20%;
+    background-color: #88adad;
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+`
+
+export const HourlyListWrap = styled.div`
+    margin-top: 40px;
+    width: 50px;
+
 `

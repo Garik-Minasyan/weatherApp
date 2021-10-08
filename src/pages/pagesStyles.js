@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const HeaderWrap = styled.div`
-    height: 200px;
-    background-color: white;
     display: flex;
     justify-content: center;
+    color: white;
 `
 export const LinkWrap = styled.div`
     list-style: none;
@@ -14,6 +13,7 @@ export const LinkWrap = styled.div`
     border-bottom-right-radius: 4px;
     box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.16);
     margin-left: 20px;
+    border-radius: 10px;
     &:hover {
         background-color: #F50057
     }

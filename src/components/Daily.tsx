@@ -7,11 +7,12 @@ import Box from '@material-ui/core/Box';
 import Modal from '@material-ui/core/Modal';
 
 const style = {
-    position: 'absolute' as 'absolute',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 450,
-    bgcolor: '#B20003',
-    color: 'white',
+    width: 400,
+    bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -66,8 +67,6 @@ const Daily: React.FC = () => {
                             </DailyListWrap>
                         </DailyListWrap>
                             <Modal
-                                aria-labelledby="unstyled-modal-title"
-                                aria-describedby="unstyled-modal-description"
                                 open={open}
                                 onClose={handleClose}
                             >

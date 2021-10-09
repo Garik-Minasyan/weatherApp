@@ -2,22 +2,22 @@ import { makeAutoObservable } from 'mobx';
 import { API_KEY_NAME } from '../api/api';
 
 class Wheather {
-    city: any = null
+    city: any
     cityByDailyHourly: any = null
     cityList: any[] = []
-    static getCity: any;
-    static addCityList: void;
+    celsius: false | true | undefined
+
     constructor() {
         makeAutoObservable(this)
+    }
+
+    chnageCelsius() {
+        this.celsius = !this.celsius
     }
 
     addCityList(list: String) {
         this.cityList.push(list)
     }
-
-    // addCoords(list: String) {
-    //     this.coordinats.push(list)
-    // }
 
     getCityCoordinats(value: String) {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=${API_KEY_NAME}`;
@@ -38,7 +38,6 @@ class Wheather {
                 this.cityByDailyHourly = { data }
                 this.city = this.cityList[index]
             })
-
     }
 }
 

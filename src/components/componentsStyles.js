@@ -30,16 +30,30 @@ export const LinkWrap = styled.ul`
 `
 
 export const HourlyWrap = styled.div`
-    width: 1213px;
-    margin-left: 20%;
-    background-color: #88adad;
-    margin-top: 40px;
+    margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
 `
-
 export const HourlyListWrap = styled.div`
-    margin-top: 40px;
-    width: 50px;
+   padding: 1px;
+   margin: 5px;
+   text-align: center;
+   background-color: #88adad;
+`
+export const DailyWrap = styled.div`
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+`
 
+export const DailyListWrap = styled.div`
+    padding: 20px;
+    margin: 5px;
+    text-align: center;
+    background-color: grey;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: grey;
 `

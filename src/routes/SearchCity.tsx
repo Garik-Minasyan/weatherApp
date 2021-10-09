@@ -11,8 +11,6 @@ import Modal from '@material-ui/core/Modal';
 
 const style = {
     position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '51%',
     transform: 'translate(-50%, -50%)',
     width: 450,
     bgcolor: '#B20003',

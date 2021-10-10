@@ -1,6 +1,6 @@
 import React from 'react';
 import wheather from '../store/wheather';
-import { fToC, toDays, filterDaily } from './../components/utils';
+import { fToC, filterDaily } from '../utils/utils';
 import LinearIndeterminate from './Loading';
 import { DailyWrap, DailyListWrap } from './componentsStyles';
 import Box from '@material-ui/core/Box';
@@ -12,8 +12,8 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    // bgcolor: 'background.paper',
+    bgcolor: '#da5959',
     boxShadow: 24,
     p: 4,
 };
@@ -22,43 +22,29 @@ const Daily: React.FC = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    if (!wheather.cityByDailyHourly) {
+    if (!wheather.cityWeatherData) {
         return <LinearIndeterminate />
     }
 
     return (
         <DailyWrap>
             {
-                filterDaily(wheather.cityByDailyHourly.data.daily).map((item: any, index: any) => {
-                    return (
+                filterDaily(wheather.cityWeatherData.daily).map((item: any, index: any) => {
+                    console.log(item)
+                    return (// todo - clearify code
                         <><DailyListWrap onClick={handleOpen} key={index}>
-
-                            <DailyListWrap>
-                                <h1>
-                                    {toDays(item.dt)}
-                                </h1>
-                            </DailyListWrap>
+                            <DailyListWrap><h1>{item.date.toString().slice(0, -46)}</h1></DailyListWrap>
                             <DailyListWrap>
                                 {<img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt='png' />}
                             </DailyListWrap>
-                            <DailyListWrap>
-                                <h2>
-                                    {item.weather[0].main}
-                                </h2>
-                            </DailyListWrap>
+                            <DailyListWrap><h2>{item.weather[0].main}</h2></DailyListWrap>
                             {wheather.celsius ?
                                 <DailyListWrap>
-                                    <h2>
-                                        {(item.temp.day - 273.15).toFixed()}
-                                        <span>°C</span>
-                                    </h2>
+                                    <h2>  {(item.temp.day - 273.15).toFixed()} <span>°C</span></h2>
                                 </DailyListWrap>
                                 :
                                 <DailyListWrap>
-                                    <h2>
-                                        {fToC(item.temp.day - 273.15)}
-                                        <span>°F</span>
-                                    </h2>
+                                    <h2> {fToC(item.temp.day - 273.15)}<span>°F</span></h2>
                                 </DailyListWrap>}
                             <DailyListWrap>
                                 <h2>
@@ -69,6 +55,8 @@ const Daily: React.FC = () => {
                             <Modal
                                 open={open}
                                 onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
                             >
                                 <Box sx={style}>
                                     {wheather.celsius ?

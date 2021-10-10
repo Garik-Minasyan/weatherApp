@@ -1,9 +1,10 @@
 import { makeAutoObservable } from 'mobx';
 import { API_KEY_NAME } from '../api/api';
+import { getDateFromSeconds } from '../utils/utils';
 
 class Wheather {
     city: any
-    cityByDailyHourly: any = null
+    cityWeatherData: any = null
     cityList: any[] = []
     celsius: false | true | undefined
 
@@ -34,8 +35,17 @@ class Wheather {
         fetch(url)
             .then((res) => res.json())
             .then((data) => {
-                // [...this.city, data]
-                this.cityByDailyHourly = { data }
+                this.cityWeatherData = { // TODO - add reusable mapping function
+                    ...data, // TODO - take only needed properties, set TS type for this object
+                    hourly: data.hourly.map((item: any) => ({
+                        ...item,
+                        date: getDateFromSeconds(item.dt, data.timezone_offset),
+                    })),
+                    daily: data.daily.map((item: any) => ({
+                        ...item,
+                        date: getDateFromSeconds(item.dt, data.timezone_offset),
+                    })),
+                };
                 this.city = this.cityList[index]
             })
     }

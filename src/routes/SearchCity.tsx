@@ -10,11 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 
 const style = {
-    position: 'absolute' as 'absolute',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 450,
-    bgcolor: '#B20003',
-    color: 'white',
+    width: 400,
+    bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -54,7 +55,7 @@ const SearchCity: React.FC = () => {
                         onClick={addSuccess}
                         variant="contained"
                         size="large"
-                        color="secondary">Success
+                        color="secondary">Add City
                     </Button>
                 </div>
                 <Modal

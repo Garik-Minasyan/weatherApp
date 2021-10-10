@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const HeaderWrap = styled.div`
     display: flex;
     justify-content: center;
-    color: white;
 `
 export const LinkWrap = styled.div`
     list-style: none;

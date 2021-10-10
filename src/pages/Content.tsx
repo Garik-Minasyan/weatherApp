@@ -4,7 +4,7 @@ import WheatherForecastObserver from '../routes/WheatherForecast';
 
 const Content: React.FC = () => {
     return (
-        <div>
+        <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Switch>
                 <Route exact path='/'>
                     <WheatherForecastObserver />

@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const LinkWrap = styled.ul`
     width: 200px;
     list-style: none;
-    margin-left: 45%;
     margin-top: 30px;
     padding: 20px 20px;
+    margin-left: 140px;
     background-color: #fff;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
@@ -33,27 +33,28 @@ export const HourlyWrap = styled.div`
     margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 `
 export const HourlyListWrap = styled.div`
-   padding: 1px;
+   padding: 15px;
    margin: 5px;
    text-align: center;
    background-color: #88adad;
+   border-radius: 10px;
 `
 export const DailyWrap = styled.div`
     margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-`
 
+    
+`
 export const DailyListWrap = styled.div`
     padding: 20px;
-    margin: 5px;
+    margin: 15px;
     text-align: center;
-    background-color: grey;
     display: flex;
-    flex-wrap: wrap;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;    flex-wrap: wrap;
     align-items: center;
-    background-color: grey;
 `

@@ -3,9 +3,7 @@ import Content from './pages/Content';
 import Header from './pages/Header';
 import React from "react";
 
-
 const App: React.FC = () => {
-
   return (
     <div>
       <Router>
@@ -14,7 +12,6 @@ const App: React.FC = () => {
       </Router>
     </div>
   )
-
 }
 
 export default App;

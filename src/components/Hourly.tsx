@@ -1,28 +1,22 @@
 import React from 'react';
 import wheather from '../store/wheather';
 import LinearIndeterminate from './Loading';
-import { msToTime, filterHours } from './utils';
+import { filterDate } from '../utils/utils';
 import { HourlyWrap, HourlyListWrap } from './componentsStyles';
-import { fToC } from './../components/utils';
+import { fToC } from '../utils/utils';
 
 const Hourly: React.FC = () => {
 
-    if (!wheather.cityByDailyHourly) {
+    if (!wheather.cityWeatherData) {
         return <LinearIndeterminate />
     }
-
     return (
         <HourlyWrap>
             {
-                filterHours(wheather.cityByDailyHourly.data.hourly).map((item: any, index: any) => {
+                filterDate(wheather.cityWeatherData.hourly).map((item: any, index: any) => {
                     return (
                         <HourlyListWrap key={index}>
-
-                            <HourlyListWrap>
-                                {
-                                    msToTime(item.dt)
-                                }
-                            </HourlyListWrap>
+                            <HourlyListWrap>{item.date.toString().slice(15, -41)}</HourlyListWrap>
                             <HourlyListWrap>
                                 {
                                     <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt='png' />
@@ -32,7 +26,7 @@ const Hourly: React.FC = () => {
                                 wheather.celsius ?
                                     <HourlyListWrap>
                                         <h2>
-                                            {(wheather.city.main.temp - 273.15).toFixed()}
+                                            {(item.temp - 273.15).toFixed()}
                                             <span>°C</span>
                                         </h2>
                                     </HourlyListWrap>
@@ -47,10 +41,8 @@ const Hourly: React.FC = () => {
 
                             }
                         </HourlyListWrap>
-
                     )
                 })
-
             }
         </HourlyWrap>
     )

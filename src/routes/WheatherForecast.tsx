@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import wheather from '../store/wheather';
-import { fToC } from '../components/utils';
+import { fToC } from '../utils/utils';
 import Button from '@material-ui/core/Button';
 import LinearIndeterminate from './../components/Loading';
 import Hourly from '../components/Hourly';
@@ -14,8 +14,7 @@ import {
     TempCityWrap,
     CoordWrap,
     SeeHourlyWrapp
-}
-    from './routesStyles';
+} from './routesStyles';
 
 const WheatherForecast: React.FC = () => {
     const [seeHourly, setSeeHourly] = useState(false)
@@ -83,11 +82,12 @@ const WheatherForecast: React.FC = () => {
                 </SeeHourlyWrapp>
             </WheatherForecastWrap>
             {
-                seeHourly ?
+                seeHourly && (
                     <div>
                         <Hourly />
                         <Daily />
-                    </div> : ''
+                    </div>
+                )
             }
         </>
     )

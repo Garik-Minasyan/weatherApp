@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { API_KEY_NAME } from '../api/api';
-import { getDateFromSeconds } from '../utils/utils';
+import { getDateFromSeconds } from './../utils/utils';
 
 class Wheather {
     city: any
@@ -35,8 +35,8 @@ class Wheather {
         fetch(url)
             .then((res) => res.json())
             .then((data) => {
-                this.cityWeatherData = { // TODO - add reusable mapping function
-                    ...data, // TODO - take only needed properties, set TS type for this object
+                this.cityWeatherData = {
+                    ...data,
                     hourly: data.hourly.map((item: any) => ({
                         ...item,
                         date: getDateFromSeconds(item.dt, data.timezone_offset),

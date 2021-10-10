@@ -1,4 +1,3 @@
-
 import { alpha, styled } from '@material-ui/core/styles';
 import { pink } from '@material-ui/core/colors';
 import Switch from '@material-ui/core/Switch';

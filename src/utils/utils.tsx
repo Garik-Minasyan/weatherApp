@@ -24,4 +24,3 @@ export const getDateFromSeconds = (sec: number, offset: number) => {
     date.setSeconds(sec + offset);
     return date;
 };
-

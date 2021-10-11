@@ -4,9 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import { LinkWrap } from './componentsStyles';
 
-
 const FormCity: React.FC = () => {
-
     return (
         <div>
             {wheather.cityList.map((item, index) => (

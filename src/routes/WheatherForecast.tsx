@@ -39,46 +39,26 @@ const WheatherForecast: React.FC = () => {
         <>
             <WheatherForecastWrap>
                 <IconWrap>
-                    <h1>
-                        {wheather.city.weather[0].main}
-                    </h1>
+                    <h1>{wheather.city.weather[0].main}</h1>
                     <img src={`https://openweathermap.org/img/wn/${wheather.city.weather[0].icon}@4x.png`} alt='png' />
                 </IconWrap>
                 <TempCityWrap>
                     {
                         wheather.celsius === true ?
-                            <h2>
-                                {(wheather.city.main.temp - 273.15).toFixed()}
-                                <span>°C</span>
-                            </h2>
+                            <h2>{(wheather.city.main.temp - 273.15).toFixed()}°C</h2>
                             :
-                            <h2>
-                                {fToC(wheather.city?.clouds.all)}
-                                <span>°F</span>
-                            </h2>
+                            <h2>{fToC(wheather.city?.clouds.all)}°F</h2>
                     }
-                    <h2>
-                        {wheather.city?.name} {wheather.city?.sys?.country}
-                    </h2>
-                    <ToggleWrap>
-                        <h4>°C</h4>
-                        <GreenSwitch onClick={changeToggleCelsius} defaultChecked />
-                        <h4>°F</h4>
-                    </ToggleWrap>
+                    <h2>{wheather.city?.name} {wheather.city?.sys?.country}</h2>
+                    <ToggleWrap><h4>°C</h4><GreenSwitch onClick={changeToggleCelsius} defaultChecked /><h4>°F</h4></ToggleWrap>
                 </TempCityWrap>
                 <SeeHourlyWrapp>
                     <CoordWrap>
-                        <h3>
-                            lat :{wheather.city?.coord.lat}
-                        </h3>
-                        <h3>
-                            lon :{wheather.city?.coord.lon}
-                        </h3>
+                        <h3>lat :{wheather.city?.coord.lat} </h3>
+                        <h3>lon :{wheather.city?.coord.lon} </h3>
                         <h3>{new Date().toLocaleString()}</h3>
                     </CoordWrap>
-                    <div>
-                        <Button onClick={changeSeeHourly} variant="contained" color="secondary">See by Hours</Button>
-                    </div>
+                    <Button onClick={changeSeeHourly} variant="contained" color="secondary">See by Hours</Button>
                 </SeeHourlyWrapp>
             </WheatherForecastWrap>
             {

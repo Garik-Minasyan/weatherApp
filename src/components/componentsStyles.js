@@ -55,6 +55,22 @@ export const DailyListWrap = styled.div`
     margin: 15px;
     text-align: center;
     display: flex;
-    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;    flex-wrap: wrap;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    flex-wrap: wrap;
     align-items: center;
+`
+
+export const DailyToHours = styled.div`
+    padding: 20px;
+    margin: 15px;
+    text-align: center;
+    justify-content: center;
+    background-color: #88adad;
+    display: flex;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    flex-wrap: wrap;
+    align-items: center;
+    h2 {
+        margin-left: 20px;
+    }
 `

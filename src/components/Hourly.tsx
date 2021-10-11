@@ -16,29 +16,18 @@ const Hourly: React.FC = () => {
                 filterDate(wheather.cityWeatherData.hourly).map((item: any, index: any) => {
                     return (
                         <HourlyListWrap key={index}>
-                            <HourlyListWrap>{item.date.toString().slice(15, -41)}</HourlyListWrap>
+                            <HourlyListWrap><h2>{item.date.toString().slice(15, 21)}</h2></HourlyListWrap>
                             <HourlyListWrap>
                                 {
                                     <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt='png' />
                                 }
                             </HourlyListWrap>
                             {
-                                wheather.celsius ?
-                                    <HourlyListWrap>
-                                        <h2>
-                                            {(item.temp - 273.15).toFixed()}
-                                            <span>°C</span>
-                                        </h2>
-                                    </HourlyListWrap>
-
+                                wheather.celsius
+                                    ?
+                                    <HourlyListWrap> <h2>{(item.temp - 273.15).toFixed()}°C</h2></HourlyListWrap>
                                     :
-                                    <HourlyListWrap>
-                                        <h2>
-                                            {fToC(item.clouds)}
-                                            <span>°F</span>
-                                        </h2>
-                                    </HourlyListWrap>
-
+                                    <HourlyListWrap> <h2>{fToC(item.clouds)}°F</h2></HourlyListWrap>
                             }
                         </HourlyListWrap>
                     )

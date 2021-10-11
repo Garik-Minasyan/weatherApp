@@ -9,7 +9,7 @@ const Content: React.FC = () => {
                 <Route exact path='/'>
                     <WheatherForecastObserver />
                 </Route>
-                <Route exact path='/searchcity'>
+                <Route path='/searchcity'>
                     <SearchCity />
                 </Route>
             </Switch>

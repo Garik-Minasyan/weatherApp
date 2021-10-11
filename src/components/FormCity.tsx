@@ -8,7 +8,7 @@ const FormCity: React.FC = () => {
     return (
         <div>
             {wheather.cityList.map((item, index) => (
-                <LinkWrap key={item.name}>
+                <LinkWrap key={index}>
                     <Link onClick={() => wheather.enterToCityLink(index)} to='/'>{item.name}</Link>
                 </LinkWrap>
             ))}
@@ -19,3 +19,5 @@ const FormCityObserver = observer(FormCity)
 
 
 export default FormCityObserver;
+
+

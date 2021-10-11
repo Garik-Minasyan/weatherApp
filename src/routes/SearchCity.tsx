@@ -3,8 +3,7 @@ import { Button, TextField } from "@material-ui/core";
 import FormCity from '../components/FormCity';
 import { SearchCityWrap } from './routesStyles';
 import wheather from '../store/wheather';
-
-import * as React from 'react';
+import React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
@@ -35,6 +34,7 @@ const SearchCity: React.FC = () => {
         if (value.length) {
             wheather.getCityCoordinats(value)
             setValue('')
+
         } else (handleOpen())
     }
 
